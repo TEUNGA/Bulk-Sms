@@ -5,7 +5,7 @@
 @endsection
 
 @section('page-name')
-{{__('Admin | VIEW GROUP ')}}
+{{__('Admin | VIEW GROUP')}}
 @endsection
 
 @section('main-content')
@@ -27,26 +27,42 @@
                 <table id="demotable" class="table table-bordered table-hover dataTable table">
                     <thead class="thead-light">
                         <tr>
-                            <th>Name </th>
-                            <th>Description </th>
+                            <th># </th>
+                            <th>Group name </th>
                             <th>Action</th>
                         </tr>
                     </thead>
+                    @php 
+                        $count = 1;
+                    @endphp
                     <tbody>
+                        @foreach($contact_groups as $contact_group)
                         <tr>
-                        <td> </td>
-                        <td> </td>
+                        <td>{{$count}} </td>
+                        <td>{{$contact_group->group_name}}  </td>
                          <td>
                        <div class="btn-group mx-1">
+                            <!-- view a particular group -->
+                          <a href="{{route('admin.view_one_group', $contact_group->group_id)}}" class="mx-1">
+                                <i class="fas fa-eye text-secondary"></i></a>
 
                             <!-- edit a particular group -->
                                <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#" class="mx-1">
                                 <i class="fas fa-edit text-secondary"></i></a>
-
-                                  <!-- delete the service group -->
-               <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#" class="text-danger mr-1 deleteBtn">
-                   <i class="fas fa-trash-alt "></i></a>
                               </div>
+                              <div class="btn-group mx-1">
+                       <?php 
+                            $contact_group_ref = DB::table('sms');
+                            ?>
+                            <div class="btn-group mx-1">
+                                @if($contact_group_ref->doesntExist())
+                                     <!-- delete the service group -->
+                            <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="" class="text-danger mr-1 deleteBtn">
+                                <i class="fas fa-trash-alt "></i></a>
+                                @else
+                               <span class="mx-1"> <i class="fas fa-lock "></i></span>
+                                @endif
+                            </div>
                        </td>
                         </tr>
 
@@ -120,13 +136,17 @@
     </div>
 </div>
 <!-- end delete group modal -->
+                    @php 
+                    $count = $count+1;
+                    @endphp
+@endforeach
 
                     </tbody>
                     <tfoot class="tfoot-light">
                     <tr>
                     
-                            <th>Name </th>
-                            <th>Description </th>
+                            <th># </th>
+                            <th>Group name </th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

@@ -25,26 +25,24 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table class="table table-bordered table-hover dataTable table">
+                <table id="demotable" class="table table-bordered table-hover dataTable table">
                     <thead class="thead-light">
                         <tr>
                             <th>Title </th>
-                            <th>Created At </th>
-                            <th>Updated At </th>
+                            <th>Message</th>
+                            <th>On </th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($messages as $message)
+                    <h1> Message Sent to {{$message->group_name}} {{$message->contact_name}} On {{$message->created_at}} </h1>
                         <tr>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>{{$message->sms_title}}</td>
+                        <td>{{$message->sms_body}}</td>
+                        <td>{{$message->created_at}}</td>
                          <td>
                        <div class="btn-group mx-1">
-
-                           <!-- view a particular group -->
-                           <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#" class="mx-1">
-                                <i class="fas fa-eye text-secondary"></i></a>
 
                             <!-- edit a particular group -->
                                <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#" class="mx-1">
@@ -127,14 +125,14 @@
     </div>
 </div>
 <!-- end delete sms modal -->
-
+@endforeach
                     </tbody>
                     <tfoot class="tfoot-light">
                     <tr>
                     
                             <th>Title </th>
-                            <th>Created At </th>
-                            <th>Updated At </th>
+                            <th>Message </th>
+                            <th>On </th>
                             <th>Action</th>
                         </tr>
                     </tfoot>

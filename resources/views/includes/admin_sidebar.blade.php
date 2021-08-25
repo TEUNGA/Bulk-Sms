@@ -68,10 +68,11 @@
         <p>Upload Contacts</p>
       </a>
     </li>
+
     <li class="nav-item">
-      <a href="/admin/view_contact" class="nav-link">
-        <i class="fas fa-eye nav-icon"></i>
-        <p>View Contacts </p>
+      <a href="/admin/add_contact" class="nav-link">
+        <i class="fas fa-user-plus nav-icon"></i>
+        <p>Add Contacts</p>
       </a>
     </li>
   

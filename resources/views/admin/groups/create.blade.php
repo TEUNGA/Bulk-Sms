@@ -43,6 +43,7 @@
                     <label for="description">Description</label>
                     <textarea name="description" id="" cols="5" rows="2" class="form-control" ></textarea>
                   </div>
+                  <input type="hidden" name="group_id">
                   
                 </div>
                 <!-- /.card-body -->
@@ -66,108 +67,82 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table class="table table-bordered table-hover dataTable table">
+                <table id="demotable" class="table table-bordered table-hover dataTable table">
                     <thead class="thead-light">
                         <tr>
                             <th>Name </th>
-                            <th>Description </th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($groups as $group)
                         <tr>
-                        <td>{{$group->name}} </td>
-                        <td>{{$group->description}} </td>
-                         <td>
+                        <td><a style="color:blue !important" href="#" data-id="" data-url="#" data-toggle="modal" data-target="#view_group{{$group->id}}" class="mx-1">{{$group->name}}</a>
+ <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#add_contact{{$group->id}}" class="mx-1"><button class="btn btn-info float-right"><i style="color:red !important;" class="fas fa-user-plus nav-icon" ></i></button></a>
+                      </td>
+                      @include('admin.modals.group_contacts.create')
+                        <td>
                        <div class="btn-group mx-1">
+                       <?php 
+                            $group_ref = DB::table('contact_group')->where('group_id', $group->id);
+                            ?>
+                            <div class="btn-group mx-1">
+                                @if($group_ref->doesntExist())
+                                     <!-- delete the service group -->
+                            <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#deletegroup{{$group->id}}" class="text-danger mr-1 deleteBtn">
+                                <i class="fas fa-trash-alt "></i></a>
+                                @else
+                               <span class="mx-1"> <i class="fas fa-lock "></i></span>
+                                @endif
+                            </div>
+                          <!-- view a particular group contacts -->
+                          <a href="{{route('admin.view_one_group',$group->id)}}" class="mx-1">
+                                <i class="fas fa-eye text-secondary"></i></a>
 
                             <!-- edit a particular group -->
                                <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#edit_group{{$group->id}}" class="mx-1">
                                 <i class="fas fa-edit text-secondary"></i></a>
-
-                                  <!-- delete the service group -->
-               <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#deletegroup{{$group->id}}" class="text-danger mr-1 deleteBtn">
-                   <i class="fas fa-trash-alt "></i></a>
-                              </div>
+                                @include('admin.modals.group_contacts.edit')
+                            
+                                            </div>
                        </td>
                         </tr>
-                        
+                         <!-- View group description modal -->
 
-                        <!-- Edit group modal -->
-
-<div class="modal fade edit-layout-modal" id="edit_group{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" data-backdrop="static" data-keyboard="false">
+<div class="modal fade edit-layout-modal" id="view_group{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel2" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog modal-dialog-centered " role="document">
       <div class="modal-content p-1">
           <div class="modal-header">
-              <h4 class="modal-title" ><i class="fas fa-pen"></i> {{ __('Edit Group') }}</h4>
+              <h4 class="modal-title" ><i class="fas fa-eye"></i> {{ __('View Description') }}</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span>
               </button>
           </div>
           <div class="modal-body p-4">
               <!-- class="dropzone" -->
-              <form  method="POST" action="{{route('admin.edit_group',$group->id)}}" enctype="multipart/form-data">
-              {{ csrf_field() }}
-              {{ method_field('PATCH') }}
                 <div class="form-group row">
-                    <div class="col-md-12 col-xs-12">
-                        <label for="name">{{__('Name')}}</label>
-                        <input class="form-control" type="text" value="{{$group->name}}"  name="name" required="required" autofocus>
-                      </div>
                       <div class="col-md-12 col-xs-12">
                         <label for="description">{{__('Description')}}</label>
-                        <input class="form-control" type="text" value="{{$group->description}}"  name="description" required="required" autofocus>
+                        <input class="form-control" type="text" value="{{$group->description}}"readonly>
                       </div>
      
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-light" data-dismiss="modal">{{ __('Close') }}</button>
-              <button  type="submit" class="btn btn-secondary" ><i class="fas fa-pen"></i> {{ __('Update') }}</button>
-          </form>
           </div>
       </div>
   </div>
 </div>
-<!-- end edit Group modal -->
 
-
-
-<!-- Modal -->
-<div class="modal fade" id="deletegroup{{$group->id}}" tabindex="-1" role="dialog" aria-labelledby="deleteGroupModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="deleteGroupModalLabel">{{__("Delete")}}  {{$group->name}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p> {{__("Are you sure?")}}</p>
-         <form id="delete-group-form{{$group->id}}" action="{{route('admin.delete_group',$group->id)}}" method="POST" >
-            {{ csrf_field() }}
-            {{ method_field('DELETE') }}
-            <div class="align-center">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('Cancel')}}</button>
-                <button type="submit" class="btn btn-danger">{{__('Yes, delete it!')}}</button>
-            </div>
-
-        </form>
-      </div>
-       
-    </div>
-  </div>
-</div>
+<!-- end view Group modal -->
 
 @endforeach
-
+@include('admin.modals.group_contacts.delete')
                     </tbody>
                     <tfoot class="tfoot-light">
                     <tr>
                     
                             <th>Name </th>
-                            <th>Description </th>
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -201,5 +176,28 @@
   </div>
   
   <!-- /.content-wrapper -->
+  <script>
+    $(document).ready(function() {
+    $('#demotable').DataTable( {
+        language: {
+            url: '/dataTables/{{app()->getLocale()}}.json'
+        },
+            responsive: true,
+            dom: 'Bfrtip',
+         buttons: [
+           
+            {
+                extend:    'excelHtml5',
+                // text:      '<i class="fa fa-file-excel-o"></i>',
+                titleAttr: 'Download Template',
+                text: 'Download Contact List Template',
+                className: "btn btn-default"
+            },
+           
+        ]
+    } );
+    } );
+</script>
+
 @endsection
 

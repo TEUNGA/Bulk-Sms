@@ -24,6 +24,6 @@
                     <a href="{{url('admin/home')}}">Admin</a>
                 </div>
                 <div class="panel-body">
-                    <a href="{{url('principal/home')}}">Principal</a>
+                    <a href="{{url('client/home')}}">Client</a>
 
 @endsection

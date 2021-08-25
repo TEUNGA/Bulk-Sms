@@ -3,10 +3,10 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-6">
             <div class="card">
                 <div class="card-header">{{ __('Register') }}</div>
-
+                <div class="card-body" style="background-color: #660033 !important; color:white !important">
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -26,12 +26,15 @@
                         </div>
 
                       
-                        <div class="form-group">
-                            <label for="role">Choose your role:</label><br>
-                            <select class="col-md-4 col-form-label text-md-right" id="role" name="role">
-                                <option>Admin</option>
-                                <option>Other</option>
-                            </select>
+                        <div class="form-group row">
+                                <label for="role" class="col-md-4 col-form-label text-md-right">Choose your role:</label>
+                                <div class="col-md-6">
+                                <select class="form-control @error('name') is-invalid @enderror" id="role" name="role">
+                                    <option>Select a role</option>
+                                    <option>Admin</option>
+                                    <option>Client</option>
+                                </select>
+                            </div>
                         </div>
 
                         <div class="form-group row">
@@ -95,5 +98,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 @endsection

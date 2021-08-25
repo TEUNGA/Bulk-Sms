@@ -26,8 +26,6 @@
    
     <div class="card card-info card-outline card-tabs">
         @include('includes.messages')
-
-           
             <div class="card-body">
             <div class="row col-md-12">
             <div class="col-md-4">
@@ -54,9 +52,9 @@
                 </div>
             </div>
             <div class="col-md-8">
-                <div class="card">
+            <div class="card mb-8">
                     <div class="card-header">
-                        <h4 class="fas fa-import">{{__("DOWNLOAD TEMPLATE")}} :</h4>
+                        <h4 class="text-info">{{__("Contact LIST TEMPLATE DOWNLOAD")}}</h4>
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -71,15 +69,18 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($contacts as $contact)
                         <tr>
-                            <td></td>
-                            <td></td>
+                            <td>{{$contact->users_name}}</td>
+                            <td>{{$contact->users_phone}}</td>
                         </tr>
+                    @endforeach
                     </tbody>
                     <tfoot class="tfoot-light">
                         <tr>
                             <th>{{__("Name")}}</th>
-                            <th>{{__("Telephone")}}</th>                            
+                            <th>{{__("Telephone")}}</th>
+                                                        
                         </tr>
                     </tfoot>
                 </table>
@@ -103,25 +104,40 @@
 <!-- /.content-header -->
 </div>
 
-
 <script>
     $(document).ready(function() {
     $('#demotable').DataTable( {
+        
         language: {
             url: '/dataTables/{{app()->getLocale()}}.json'
         },
             responsive: true,
             dom: 'Bfrtip',
          buttons: [
-           
+            {
+                extend:    'copyHtml5',
+                // text:      '<i class="fa fa-files-o"></i>',
+                titleAttr: 'Copy',
+                className: "btn btn-info"
+            },
             {
                 extend:    'excelHtml5',
                 // text:      '<i class="fa fa-file-excel-o"></i>',
-                titleAttr: 'Download Template',
-                text: 'Download Contact List Template',
-                className: "btn btn-default"
+                titleAttr: 'Excel',
+                className: "btn btn-warning"
             },
-           
+            {
+                extend:    'csvHtml5',
+                // text:      '<i class="fa fa-file-text-o"></i>',
+                titleAttr: 'CSV',
+                className: "btn btn-info"
+            },
+            {
+                extend:    'pdfHtml5',
+                // text:      '<i class="fa fa-file-pdf-o"></i>',
+                titleAttr: 'PDF',
+                className: "btn btn-warning"
+            }
         ]
     } );
     } );

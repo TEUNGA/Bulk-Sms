@@ -26,12 +26,41 @@ scratch. This page gets rid of all links and provides the needed markup only.
  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="/plugins/fontawesome-free/css/all.min.css">
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+   <!-- Scripts -->
+
+   <script src="/assets/js/vendor/jquery-3.3.1.min.js"></script>
+        
+        <script src="/assets/js/vendor/bootstrap.bundle.min.js"></script>
+        <script src="/assets/js/vendor/perfect-scrollbar.min.js"></script>
+        <script src="/assets/js/vendor/echarts.min.js"></script>
+    
+        <script src="/assets/js/vendor/sweetalert2.min.js"></script>
+        <script src="/assets/js/es5/script.min.js"></script>
+        <script src="/assets/js/sweetalert.script.js"></script>
+
+        <script src="/assets/js/es5/echart.options.min.js"></script>
+        <script src="/assets/js/es5/dashboard.v1.script.min.js"></script>
+        <script src="/assets/js/es5/script.min.js"></script>
+        <!-- page vendor js -->
+        <script src="/assets/js/vendor/datatables.min.js"></script>
+        <script src="/assets/js/es5/script.min.js"></script>
+        <!-- page custom js -->
+        <script src="/assets/js/datatables.script.js"></script>
   <!-- DataTables -->
   <link rel="stylesheet" href="/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="/DataTables/datatables.css">
+
+  <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+
   <link rel="stylesheet" href="/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="/dist/css/adminlte.min.css">
+  <!-- select2 -->
+  <link href="/select2/css/select2.min.css" rel="stylesheet" />
+<script src="/select2/js/select2.min.js"></script>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">

@@ -33,95 +33,19 @@
                         </tr>
                     </thead>
                     <tbody>
+                    @foreach($contacts as $contact)
                         <tr>
-                        <td> </td>
-                        <td> </td>
+                        <td> {{$contact->users_name}}</td>
+                        <td> {{$contact->users_phone}}</td>
                          <td>
                        <div class="btn-group mx-1">
-
-                            <!-- edit a particular group -->
-                               <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#" class="mx-1">
-                                <i class="fas fa-edit text-secondary"></i></a>
-
-                                  <!-- delete the service group -->
+                                  <!-- delete the contact -->
                <a href="#" data-id="" data-url="#" data-toggle="modal" data-target="#" class="text-danger mr-1 deleteBtn">
                    <i class="fas fa-trash-alt "></i></a>
                               </div>
                        </td>
                         </tr>
-
-                        <!-- Edit group modal -->
-
-<div class="modal fade edit-layout-modal" id="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" data-backdrop="static" data-keyboard="false">
-  <div class="modal-dialog modal-dialog-centered " role="document">
-      <div class="modal-content p-1">
-          <div class="modal-header">
-              <h4 class="modal-title" ><i class="fas fa-pen"></i> {{ __('Edit Group') }}</h4>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-          </div>
-          <div class="modal-body p-4">
-              <!-- class="dropzone" -->
-              <form  method="POST" action="" enctype="multipart/form-data">
-              {{ csrf_field() }}
-              {{ method_field('PATCH') }}
-                <div class="form-group row">
-                    <div class="col-md-12 col-xs-12">
-                        <label for="name">{{__('Name')}}</label>
-                        <input class="form-control" type="text"  name="name" required="required" placeholder="{{__('Name')}}" autofocus>
-                      </div>
-                      <div class="col-md-12 col-xs-12">
-                        <label for="telephone">{{__('Telephone')}}</label>
-                        <input class="form-control" type="text"   name="telephone" required="required" placeholder="{{__('Telephone')}}" autofocus>
-                      </div>
-     
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-light" data-dismiss="modal">{{ __('Close') }}</button>
-              <button  type="submit" class="btn btn-secondary" ><i class="fas fa-pen"></i> {{ __('Update') }}</button>
-          </form>
-          </div>
-      </div>
-  </div>
-</div>
-<!-- end edit Group modal -->
-
-
-
-<!-- Delete Group modal -->
-<div class="modal fade edit-layout-modal" id="" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1" data-backdrop="static" data-keyboard="false">
-    <div class="modal-dialog modal-dialog-centered " role="document">
-        <div class="modal-content p-1">
-            <div class="modal-header">
-                <h4 class="modal-title" ><i class="fas fa-trash"></i> {{ __('Delete:') }}</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body p-4">
-                <!-- class="dropgroup" -->
-                <form  method="POST" action="#" enctype="multipart/form-data">
-                {{ csrf_field() }}
-                {{ method_field('DELETE') }}
-                  <div class="form-group row">
-                      <div class="col-md-12 col-xs-12">
-                          <label for="group_name">{{__('Are you sure?')}}</label>
-                      </div>
-                  </div>
-            </div>
-            
-            <div class="modal-footer">
-                <button type="button" class="btn btn-light" data-dismiss="modal">{{ __('Close') }}</button>
-                <button  type="submit" class="btn btn-secondary" ><i class="fas fa-trash"></i> {{ __('Yes, Proceed') }}</button>
-            </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end delete group modal -->
-
-                    </tbody>
+       </tbody>
                     <tfoot class="tfoot-light">
                     <tr>
                     
